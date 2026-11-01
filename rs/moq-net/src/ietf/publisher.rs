@@ -912,11 +912,6 @@ impl Publisher {
 	/// Blocks on it for the same reason [`Self::peer`] does: this decides whether the
 	/// first advertisement is sent unasked, so it cannot be guessed and corrected later.
 	async fn requires_solicitation(&self) -> bool {
-		// Local test patch: some IETF peers (Cloudflare's relay dialing an upstream) never
-		// answer an unsolicited PUBLISH_NAMESPACE and drop the session when it is withdrawn.
-		if std::env::var_os("LK_TEST_SOLICITED_ONLY").is_some() {
-			return true;
-		}
 		self.peer_setup.get().await.solicit.unwrap_or(false)
 	}
 
