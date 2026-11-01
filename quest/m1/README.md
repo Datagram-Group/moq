@@ -132,6 +132,7 @@ removed).
 - [moq-c at parity](/quest/m1/c/README.md) - the hand-written `moq-c` ships at the cut with every m1 binding feature moq-ffi gains
 - [Lite-05/06 timestamps pass through](/quest/m1/lite-timestamps-through.md) - a timed track received over lite-05/06 stays timed and is forwarded with its timestamps over every version
 - [Exact timestamps in every binding](/quest/m1/binding-timestamps.md) - bindings carry `{value, scale}` timestamps instead of lossy microseconds
+- [Bindings see a moq-transport run end as an end](/quest/m1/ffi-ietf-run-end.md) - an IETF publisher ending its run reaches moq-ffi consumers as an end, not `Internal`
 - [A broadcast stamps everything from one clock](/quest/m1/broadcast-clock.md) - catalog, MSF, and HLS record groups are stamped from the broadcast's clock, never the ambient one
 - [A job's exact route continues its claim's readers](/quest/m1/announce-takeover.md) - a job's route inherits its claim's identity, replacing the ANNOUNCE_TAKEOVER predecessor design
 - [Subscribe ranges](/quest/m1/subscribe-ranges/README.md) - a lite-07 SUBSCRIBE asks for past and live ranges with absolute or relative ends, in either order, and replaces FETCH; merged ranges never starve a subscriber; relays fill misses by range, including over moq-transport
@@ -144,7 +145,6 @@ removed).
 - [Moxygen pin bump](/quest/m1/moxygen-pin-bump.md) - waiting on moxygen#264, then the TRACK_STATUS patch is dropped
 - [A smaller, safer API than release](/quest/m1/api-audit/README.md) - every surface added since release has a consumer or is gone, overlapping operations are collapsed, names mirror across Rust, JS, and the bindings, and every break says how to migrate
 - [moq-transport 18, 20, and 22 only](/quest/m1/ietf-drop/README.md) - drafts 14-17, 19, and 21 are deleted from Rust, JS, tests, interop lanes, and docs, removing the legacy control-stream adapter and its request limit
-- [Our moq-transport publishers refuse SUBSCRIBE_TRACKS](/quest/m1/ietf-tracks-refuse.md) - a peer's listing gets NOT_SUPPORTED, while Rust still lists an IETF peer's tracks upstream for the archive
 - [A moq-transport request token is one auth per distinct token](/quest/m1/ietf-token-auth.md) - requests naming the same token share one verification and grant, on any request type, ending with the last such request
 - [moq-transport carries no epoch](/quest/m1/ietf-epoch-cut.md) - Rust and JS moq-transport sessions stop negotiating MoQ Epoch, so every moq-transport hop is epochless; the draft stays
 - [moq-quic's API improves on quinn's](/quest/m1/quic-api/README.md) - moq-quic and both QUIC drivers ship one mirrored API: `send::`/`recv::` namespaces, one error per direction, consuming terminal operations, plain configs, no quinn baggage
@@ -171,7 +171,6 @@ removed).
 - [moq-transport-22 FETCH cost](/quest/m1/ietf22-fetch-poll-cost.md) - #7042's +12.8% instructions on draft-22 FETCH is fixed or attributed
 - [An idle track poll exits cheaply](/quest/m1/idle-poll-exit.md) - a reader's poll on a track with nothing new costs a small constant, not ~3,800 instructions
 - [Main is no slower than release](/quest/m1/release-perf/README.md) - every benchmark where main is slower than release is fixed or accepted with a reason, checked by a final paired run before the cut
-- [The browser baseline keeps its page logs](/quest/m1/baseline-page-logs.md) - a failing wasm-baseline cell is diagnosable from its artifact
 - [Interop coverage](/quest/m1/interop-coverage/README.md) - the riskiest moq-transport features moq-net exposes get cross-implementation tests over drafts 18 and 22
 - [Calibrate the paired nightly benchmarks](/quest/m1/bench-ci.md) - A/A and deliberately slowed Nightly runs set the paired comparison's threshold, so its regression alerts can be trusted
 - [HLS and DASH segment conformance](/quest/m1/hls-conformance.md) - nightly ffprobe checks that advertised timing, sync flags, and bytes match the media served
@@ -189,6 +188,7 @@ removed).
 - [fMP4 decode times keep increasing](/quest/m1/fmp4-bframe-decode-time.md) - fragments shorter than a GOP of B-frame video never step `tfdt` backwards
 - [A JS relay floors an unresolved copy at its newest group](/quest/m1/js-early-latest.md) - lite-01..05 subscribes without a start don't replay the cache from group 0
 - [moq-quic deletes its remaining 0-RTT code](/quest/m1/quic-zero-rtt-leftovers.md) - only the code that drops a 0-RTT packet remains, with a test
+- [Gate the no-em-dash rule](/quest/m1/em-dash-gate.md) - `just check` fails on an em dash in any tracked text file
 
 ## Related
 
